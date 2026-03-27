@@ -9,7 +9,7 @@ version = "3.0.0"
 displayName = "NoSignGUI"
 authors = "CoolAid48"
 description = '''
-Allows you to toggle the sign text interface off and on!
+Allows you to toggle the sign text interface off and on
 '''
 logoFile = "assets/nosigngui/icon.png"
 
