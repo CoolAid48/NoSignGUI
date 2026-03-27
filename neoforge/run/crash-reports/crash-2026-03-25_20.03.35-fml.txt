@@ -1,0 +1,140 @@
+---- Minecraft Crash Report ----
+// Who set us up the TNT?
+
+Time: 2026-03-25 20:03:35
+Description: Mod loading failures have occurred; consult the issue messages for more details
+
+net.neoforged.neoforge.logging.CrashReportExtender$ModLoadingCrashException: Mod loading has failed
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: main
+Stacktrace:
+	at net.neoforged.fml.loading.moddiscovery.locators.NeoForgeDevDistCleaner.handlesClass(NeoForgeDevDistCleaner.java:95) ~[loader-10.0.36.jar:10.0] {}
+-- Mod loading issue for: nosigngui --
+Details:
+	Caused by 0: java.lang.NoClassDefFoundError: net/minecraft/client/KeyMapping$Category
+		at TRANSFORMER/nosigngui@3.0.0/me.coolaid.nosigngui.neoforge.NoSignGUINeoForge.<clinit>(NoSignGUINeoForge.java:18) ~[main/:?] {}
+		at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized0(Native Method) ~[?:?] {}
+		at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized(Unsafe.java:1160) ~[?:?] {}
+		at java.base/jdk.internal.reflect.MethodHandleAccessorFactory.ensureClassInitialized(MethodHandleAccessorFactory.java:340) ~[?:?] {}
+		at java.base/jdk.internal.reflect.MethodHandleAccessorFactory.newConstructorAccessor(MethodHandleAccessorFactory.java:103) ~[?:?] {}
+		at java.base/jdk.internal.reflect.ReflectionFactory.newConstructorAccessor(ReflectionFactory.java:173) ~[?:?] {}
+		at java.base/java.lang.reflect.Constructor.acquireConstructorAccessor(Constructor.java:549) ~[?:?] {}
+		at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?] {}
+		at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?] {}
+		at net.neoforged.fml.javafmlmod.FMLModContainer.constructMod(FMLModContainer.java:118) ~[loader-10.0.36.jar:10.0] {}
+		at net.neoforged.fml.ModLoader.lambda$constructMods$0(ModLoader.java:125) ~[loader-10.0.36.jar:10.0] {}
+		at net.neoforged.fml.ModLoader.lambda$dispatchParallelTask$4(ModLoader.java:203) ~[loader-10.0.36.jar:10.0] {}
+		at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:911) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:507) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1489) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:2071) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2033) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187) ~[?:?] {}
+
+	Mod file: /C:/Users/CoolAid/Desktop/IntelliJ Projects/nosigngui/neoforge/build/resources/main/
+	Failure message: NoSignGUI (nosigngui) has failed to load correctly
+		java.lang.NoClassDefFoundError: net/minecraft/client/KeyMapping$Category
+	Mod version: 3.0.0
+	Mod issues URL: <No issues URL found>
+	Exception message: java.lang.ClassNotFoundException: Attempted to load class net.minecraft.client.KeyMapping$Category which is not present on the dedicated server
+Stacktrace:
+	at net.neoforged.fml.loading.moddiscovery.locators.NeoForgeDevDistCleaner.handlesClass(NeoForgeDevDistCleaner.java:95) ~[loader-10.0.36.jar:10.0] {}
+	at net.neoforged.fml.classloading.transformation.ClassProcessorSet.transformersFor(ClassProcessorSet.java:101) ~[loader-10.0.36.jar:10.0] {}
+	at net.neoforged.fml.classloading.transformation.ClassTransformer.transform(ClassTransformer.java:60) ~[loader-10.0.36.jar:10.0] {}
+	at net.neoforged.fml.classloading.transformation.TransformingClassLoader.maybeTransformClassBytes(TransformingClassLoader.java:47) ~[loader-10.0.36.jar:10.0] {}
+	at net.neoforged.fml.classloading.ModuleClassLoader.readerToClass(ModuleClassLoader.java:224) ~[loader-10.0.36.jar:10.0] {}
+	at net.neoforged.fml.classloading.ModuleClassLoader.loadClass(ModuleClassLoader.java:245) ~[loader-10.0.36.jar:10.0] {}
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?] {}
+	at TRANSFORMER/nosigngui@3.0.0/me.coolaid.nosigngui.neoforge.NoSignGUINeoForge.<clinit>(NoSignGUINeoForge.java:18) ~[main/:?] {}
+	at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized0(Native Method) ~[?:?] {}
+	at java.base/jdk.internal.misc.Unsafe.ensureClassInitialized(Unsafe.java:1160) ~[?:?] {}
+	at java.base/jdk.internal.reflect.MethodHandleAccessorFactory.ensureClassInitialized(MethodHandleAccessorFactory.java:340) ~[?:?] {}
+	at java.base/jdk.internal.reflect.MethodHandleAccessorFactory.newConstructorAccessor(MethodHandleAccessorFactory.java:103) ~[?:?] {}
+	at java.base/jdk.internal.reflect.ReflectionFactory.newConstructorAccessor(ReflectionFactory.java:173) ~[?:?] {}
+	at java.base/java.lang.reflect.Constructor.acquireConstructorAccessor(Constructor.java:549) ~[?:?] {}
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?] {}
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?] {}
+	at net.neoforged.fml.javafmlmod.FMLModContainer.constructMod(FMLModContainer.java:118) ~[loader-10.0.36.jar:10.0] {}
+	at net.neoforged.fml.ModLoader.lambda$constructMods$0(ModLoader.java:125) ~[loader-10.0.36.jar:10.0] {}
+	at net.neoforged.fml.ModLoader.lambda$dispatchParallelTask$4(ModLoader.java:203) ~[loader-10.0.36.jar:10.0] {}
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:911) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:507) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1489) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:2071) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2033) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187) ~[?:?] {}
+
+
+-- System Details --
+Details:
+	Minecraft Version: 1.21.11
+	Minecraft Version ID: 1.21.11
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 22.0.2, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 759575152 bytes (724 MiB) / 2071986176 bytes (1976 MiB) up to 17112760320 bytes (16320 MiB)
+	CPUs: 32
+	Processor Vendor: GenuineIntel
+	Processor Name: 13th Gen Intel(R) Core(TM) i9-13900K
+	Identifier: Intel64 Family 6 Model 183 Stepping 1
+	Microarchitecture: Raptor Lake
+	Frequency (GHz): 3.00
+	Number of physical packages: 1
+	Number of physical CPUs: 24
+	Number of logical CPUs: 32
+	Graphics card #0 name: Intel(R) UHD Graphics 770
+	Graphics card #0 vendor: Intel Corporation
+	Graphics card #0 VRAM (MiB): 2048.00
+	Graphics card #0 deviceId: VideoController1
+	Graphics card #0 versionInfo: 32.0.101.7082
+	Graphics card #1 name: NVIDIA GeForce RTX 4070
+	Graphics card #1 vendor: NVIDIA
+	Graphics card #1 VRAM (MiB): 12282.00
+	Graphics card #1 deviceId: VideoController2
+	Graphics card #1 versionInfo: 32.0.15.6094
+	Memory slot #0 capacity (MiB): 32768.00
+	Memory slot #0 clockSpeed (GHz): 6.00
+	Memory slot #0 type: DDR5
+	Memory slot #1 capacity (MiB): 32768.00
+	Memory slot #1 clockSpeed (GHz): 6.00
+	Memory slot #1 type: DDR5
+	Virtual memory max (MiB): 130788.84
+	Virtual memory used (MiB): 32389.93
+	Swap memory total (MiB): 65536.00
+	Swap memory used (MiB): 260.20
+	Space in storage for jna.tmpdir (MiB): <path not set>
+	Space in storage for org.lwjgl.system.SharedLibraryExtractPath (MiB): <path not set>
+	Space in storage for io.netty.native.workdir (MiB): <path not set>
+	Space in storage for java.io.tmpdir (MiB): available: 1097100.75, total: 1906547.00
+	Space in storage for workdir (MiB): available: 1097100.75, total: 1906547.00
+	JVM Flags: 4 total; -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions
+	Debug Flags: 0 total; 
+	Class Processors: 
+		00.00%: neoforge:neoforge_dev_dist_cleaner
+		00.00%: neoforge:computing_frames (marker)
+		00.00%: neoforge:runtime_enum_extender
+		04.71%: neoforge:access_transformer
+		00.09%: neoforge:mixin
+		00.00%: neoforge:simple_processors_default (marker)
+		00.02%: neoforge.coremods:field_to_getter.net.minecraft.world.level.biome.biome
+		00.02%: neoforge.coremods:field_to_getter.net.minecraft.world.level.block.flowerpotblock
+		00.02%: neoforge.coremods:field_to_getter.net.minecraft.world.level.levelgen.structure.structure
+		00.42%: neoforge.coremods:method_redirector
+		88.28%: unprotect:processor
+	Mod List: 
+		18215779506565536634.jar                          |generated_b09f2c1             |generated_b09f2c1             |1                   |Manifest: e420ac898b7eeee04ebd3310b4f2744223fdb2343aae36e98013ba6c41101b82
+		client-extra.jar                                  |Minecraft                     |minecraft                     |1.21.11             |Manifest: NOSIGNATURE
+		neoforge-21.11.40-beta-minecraft-merged-1.21.11-lo|NeoForge                      |neoforge                      |21.11.40-beta       |Manifest: NOSIGNATURE
+		main                                              |NoSignGUI                     |nosigngui                     |3.0.0               |Manifest: NOSIGNATURE
+	Crash Report UUID: adcf4557-f8eb-4fd0-8568-a509f7dd27fd
+	FML: 10.0.36
+	NeoForge: 21.11.40-beta
