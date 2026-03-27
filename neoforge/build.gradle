@@ -46,3 +46,10 @@ processResources {
         expand version: project.version
     }
 }
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = ""
+}
+
+tasks.build.dependsOn shadowJar

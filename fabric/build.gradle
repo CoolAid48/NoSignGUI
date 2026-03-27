@@ -39,3 +39,11 @@ processResources {
         expand version: project.version
     }
 }
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = "" // Removes the '-all' suffix so it's the main jar
+}
+
+// Ensure the standard jar task is replaced by the shadowJar
+tasks.build.dependsOn shadowJar
