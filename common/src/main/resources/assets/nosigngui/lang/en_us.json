@@ -1,5 +1,5 @@
 {
-  "key.categories.nosigngui": "NoSignGUI",
+  "key.category.minecraft.nosigngui": "NoSignGUI",
   "key.nosigngui.toggle": "Toggle NoSignGUI",
   "component.toggleGuiKey.message": "NoSignGUI: ",
   "component.toggleGuiKey.disabled": "Disabled",

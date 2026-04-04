@@ -1,8 +1,10 @@
 package me.coolaid.nosigngui.neoforge;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import me.coolaid.nosigngui.NoSignGUI;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
@@ -12,10 +14,13 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod(NoSignGUI.MOD_ID)
 public final class NoSignGUINeoForge {
+    private static final KeyMapping.Category CATEGORY = new KeyMapping.Category(ResourceLocation.parse("nosigngui"));
+
     private static final KeyMapping TOGGLE_GUI_KEY = new KeyMapping(
             "key.nosigngui.toggle",
+            InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_G,
-            "key.categories." + NoSignGUI.MOD_ID
+            CATEGORY
     );
 
     public NoSignGUINeoForge(IEventBus modEventBus) {
@@ -25,6 +30,7 @@ public final class NoSignGUINeoForge {
     }
 
     private void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
+        event.registerCategory(CATEGORY);
         event.register(TOGGLE_GUI_KEY);
     }
 
