@@ -1,6 +1,7 @@
 plugins {
-    id "architectury-plugin" version "3.5-SNAPSHOT"
-    id "dev.architectury.loom-no-remap" version "1.14-SNAPSHOT" apply false
+    id 'dev.architectury.loom' version '1.13-SNAPSHOT' apply false
+    id 'architectury-plugin' version '3.4-SNAPSHOT'
+    id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
 }
 
 architectury {
@@ -13,7 +14,7 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: "dev.architectury.loom-no-remap"
+    apply plugin: 'dev.architectury.loom'
     apply plugin: 'architectury-plugin'
     apply plugin: 'maven-publish'
 
@@ -32,6 +33,7 @@ subprojects {
 
     dependencies {
         minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
+        mappings loom.officialMojangMappings()
     }
 
     java {
@@ -45,7 +47,7 @@ subprojects {
     }
 
     tasks.withType(JavaCompile).configureEach {
-        it.options.release = 25
+        it.options.release = 21
     }
 
     // Configure Maven publishing.

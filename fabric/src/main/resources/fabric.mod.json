@@ -24,8 +24,8 @@
     "nosigngui.mixins.json"
   ],
   "depends": {
-    "minecraft": "~26.1",
-    "fabricloader": ">=0.18.4",
+    "minecraft": "~1.21.4",
+    "fabricloader": ">=0.16.14",
     "fabric-api": "*"
   },
   "custom": {

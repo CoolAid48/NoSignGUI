@@ -4,14 +4,12 @@ import com.mojang.blaze3d.platform.InputConstants;
 import me.coolaid.nosigngui.NoSignGUI;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public final class NoSignGUIFabric implements ClientModInitializer {
-    private static final KeyMapping.Category CATEGORY =
-            KeyMapping.Category.register(Identifier.parse(NoSignGUI.MOD_ID));
+    private static final String CATEGORY = "key.categories." + NoSignGUI.MOD_ID;
 
     private static final KeyMapping TOGGLE_GUI_KEY = new KeyMapping(
             "key.nosigngui.toggle",
@@ -23,11 +21,13 @@ public final class NoSignGUIFabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         NoSignGUI.init();
-        KeyMappingHelper.registerKeyMapping(TOGGLE_GUI_KEY);
+        KeyBindingHelper.registerKeyBinding(TOGGLE_GUI_KEY);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.player != null && TOGGLE_GUI_KEY.consumeClick()) {
-                client.player.sendOverlayMessage(NoSignGUI.toggleSignGuiMessage());
+            while (TOGGLE_GUI_KEY.consumeClick()) {
+                if (client.player != null) {
+                    client.player.displayClientMessage(NoSignGUI.toggleSignGuiMessage(), true);
+                }
             }
         });
     }

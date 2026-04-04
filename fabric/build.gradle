@@ -1,5 +1,5 @@
 plugins {
-    id "com.gradleup.shadow" version "9.2.2"
+    id 'com.github.johnrengelman.shadow'
 }
 
 architectury {
@@ -25,11 +25,11 @@ configurations {
 }
 
 dependencies {
-    implementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
-    implementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
 
-    common(project(path: ":common")) { transitive false }
-    shadowBundle(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }
 
 processResources {
@@ -42,8 +42,9 @@ processResources {
 
 shadowJar {
     configurations = [project.configurations.shadowBundle]
-    archiveClassifier = "" // Removes the '-all' suffix so it's the main jar
+    archiveClassifier = 'dev-shadow'
 }
 
-// Ensure the standard jar task is replaced by the shadowJar
-tasks.build.dependsOn shadowJar
+remapJar {
+    input.set shadowJar.archiveFile
+}

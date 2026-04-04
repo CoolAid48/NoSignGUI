@@ -1,5 +1,5 @@
 plugins {
-    id "com.gradleup.shadow" version "9.2.2"
+    id 'com.github.johnrengelman.shadow'
 }
 
 architectury {
@@ -34,9 +34,8 @@ repositories {
 dependencies {
     neoForge "net.neoforged:neoforge:$rootProject.neoforge_version"
 
-
-    common(project(path: ":common")) { transitive false }
-    shadowBundle(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 }
 
 processResources {
@@ -49,7 +48,9 @@ processResources {
 
 shadowJar {
     configurations = [project.configurations.shadowBundle]
-    archiveClassifier = ""
+    archiveClassifier = 'dev-shadow'
 }
 
-tasks.build.dependsOn shadowJar
+remapJar {
+    input.set shadowJar.archiveFile
+}
