@@ -6,12 +6,12 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public final class NoSignGUIFabric implements ClientModInitializer {
     private static final KeyMapping.Category CATEGORY =
-            KeyMapping.Category.register(ResourceLocation.parse("nosigngui"));
+            KeyMapping.Category.register(Identifier.parse("nosigngui"));
 
     private static final KeyMapping TOGGLE_GUI_KEY = new KeyMapping(
             "key.nosigngui.toggle",
