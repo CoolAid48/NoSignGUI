@@ -5,7 +5,7 @@ license = "MIT"
 
 [[mods]]
 modId = "nosigngui"
-version = "3.0.0"
+version = "${version}"
 displayName = "NoSignGUI"
 authors = "CoolAid48"
 description = '''
