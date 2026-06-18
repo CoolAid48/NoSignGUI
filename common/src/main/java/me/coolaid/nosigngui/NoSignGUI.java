@@ -1,9 +1,13 @@
 package me.coolaid.nosigngui;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class NoSignGUI {
     public static final String MOD_ID = "nosigngui";
@@ -13,6 +17,8 @@ public final class NoSignGUI {
     // That way, it's clear which mod wrote info, warnings, and errors.
 
     private static volatile boolean signGuiEnabled = true;
+    private static final long PLACED_SIGN_GUI_TIMEOUT_MILLIS = 5000L;
+    private static final Map<BlockPos, Long> placedSignsAwaitingGui = new ConcurrentHashMap<>();
 
     private static final Component MESSAGE = Component
             .translatable("component.toggleGuiKey.message")
@@ -42,8 +48,30 @@ public final class NoSignGUI {
         return signGuiEnabled;
     }
 
+    public static void markPlacedSignForSkippedGui(BlockPos pos) {
+        if (!signGuiEnabled) {
+            placedSignsAwaitingGui.put(pos.immutable(), System.currentTimeMillis());
+        }
+    }
+
+    public static boolean shouldSkipPlacedSignGui(BlockPos pos) {
+        if (signGuiEnabled) {
+            placedSignsAwaitingGui.remove(pos);
+            return false;
+        }
+
+        long now = System.currentTimeMillis();
+        placedSignsAwaitingGui.entrySet().removeIf(entry -> now - entry.getValue() > PLACED_SIGN_GUI_TIMEOUT_MILLIS);
+
+        Long markedAt = placedSignsAwaitingGui.remove(pos);
+        return markedAt != null && now - markedAt <= PLACED_SIGN_GUI_TIMEOUT_MILLIS;
+    }
+
     public static Component toggleSignGuiMessage() {
         signGuiEnabled = !signGuiEnabled;
+        if (signGuiEnabled) {
+            placedSignsAwaitingGui.clear();
+        }
         return signGuiEnabled ? DISABLED_MESSAGE : ENABLED_MESSAGE;
     }
 }

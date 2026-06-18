@@ -38,7 +38,7 @@ public final class NoSignGUINeoForge {
         while (TOGGLE_GUI_KEY.consumeClick()) {
             Minecraft minecraft = Minecraft.getInstance();
             if (minecraft.player != null) {
-                minecraft.player.displayClientMessage(NoSignGUI.toggleSignGuiMessage(), true);
+                minecraft.player.sendOverlayMessage(NoSignGUI.toggleSignGuiMessage());
             }
         }
     }
