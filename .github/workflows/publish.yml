@@ -66,5 +66,5 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-      - name: Publish to Modrinth and CurseForge
+      - name: Publish to Modrinth and CurseForge in Minecraft version order
         run: ./gradlew --no-daemon --no-watch-fs publishAll -Ppublish.dryRun="$PUBLISH_DRY_RUN"

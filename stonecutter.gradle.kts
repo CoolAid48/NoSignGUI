@@ -28,8 +28,44 @@ tasks.register("buildAll") {
     dependsOn(stonecutter.tasks.named("buildAndCollect") { branch.id != "common" })
 }
 
+// Preserve the order of the top-level Minecraft version tables in the
+// Stonecutter properties file. Platform-specific tables such as
+// [neoforge."1.20.2"] intentionally do not match this expression.
+val orderedMinecraftVersions = rootProject.file("stonecutter.properties.toml")
+    .readLines()
+    .mapNotNull { line ->
+        Regex("""^\["([^"]+)"\]$""")
+            .matchEntire(line.trim())
+            ?.groupValues
+            ?.get(1)
+    }
+
+val publishPlatforms = listOf("fabric", "forge", "neoforge")
+val platformPublishTasks = listOf("publishCurseforge", "publishModrinth")
+
+// Gradle may otherwise schedule all Fabric publications before Forge and
+// NeoForge. Order the real upload tasks so every loader/destination for one
+// Minecraft version finishes before publishing the next version.
+gradle.projectsEvaluated {
+    val uploadsByMinecraftVersion = orderedMinecraftVersions.map { minecraftVersion ->
+        publishPlatforms.flatMap { platform ->
+            platformPublishTasks.map { taskName ->
+                project(":$platform:$minecraftVersion").tasks.named(taskName)
+            }
+        }
+    }
+
+    uploadsByMinecraftVersion.zipWithNext().forEach { (previousUploads, currentUploads) ->
+        currentUploads.forEach { currentUpload ->
+            currentUpload.configure {
+                previousUploads.forEach(::mustRunAfter)
+            }
+        }
+    }
+}
+
 tasks.register("publishAll") {
     group = "publishing"
-    description = "Publishes every supported Minecraft/loader artifact to Modrinth and CurseForge."
+    description = "Publishes every artifact to Modrinth and CurseForge in Minecraft version order."
     dependsOn(stonecutter.tasks.named("publishMods") { branch.id != "common" })
 }
