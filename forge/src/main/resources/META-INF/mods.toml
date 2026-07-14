@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[1,)"
+loaderVersion = "${loader}"
 license = "MIT"
 issueTrackerURL = "https://github.com/CoolAid48/NoSignGUI/issues"
 
@@ -16,15 +16,15 @@ Allows you to toggle the sign text interface off and on
 '''
 
 [[dependencies.nosigngui]]
-modId = "neoforge"
-type = "required"
-versionRange = "${neoforge}"
+modId = "forge"
+mandatory = true
+versionRange = "${loader}"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.nosigngui]]
 modId = "minecraft"
-type = "required"
+mandatory = true
 versionRange = "${minecraft}"
 ordering = "NONE"
 side = "CLIENT"

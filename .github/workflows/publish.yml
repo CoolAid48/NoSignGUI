@@ -1,0 +1,70 @@
+name: Publish all versions
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Validate every upload without publishing
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    environment: publishing
+    env:
+      MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+      CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+      PUBLISH_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Verify release tag matches mod version
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          mod_version="$(sed -n 's/^mod\.version = "\(.*\)"/\1/p' stonecutter.properties.toml)"
+          if [[ "$GITHUB_REF_NAME" != "v$mod_version" ]]; then
+            echo "Tag $GITHUB_REF_NAME must match mod.version $mod_version (expected v$mod_version)."
+            exit 1
+          fi
+
+      - name: Set up Java 25
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
+
+      - name: Build every Stonecutter version
+        run: ./gradlew --no-daemon --no-watch-fs buildAll
+
+      - name: Upload compiled jars
+        uses: actions/upload-artifact@v7
+        with:
+          name: nosigngui-${{ github.run_id }}-all-versions
+          path: build/libs/**/*.jar
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish to Modrinth and CurseForge
+        run: ./gradlew --no-daemon --no-watch-fs publishAll -Ppublish.dryRun="$PUBLISH_DRY_RUN"

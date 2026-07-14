@@ -1,0 +1,6 @@
+{
+  "pack": {
+    "description": "NoSignGUI resources",
+    "pack_format": ${pack}
+  }
+}

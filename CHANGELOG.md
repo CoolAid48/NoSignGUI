@@ -1,0 +1,1 @@
+NoSignGUI v4.0.0 adds Stonecutter integration for multi-version management, dedicated Forge source, and publishing support for every Minecraft 1.20, 1.21, and 26.x release available on Fabric, Forge, and NeoForge.
