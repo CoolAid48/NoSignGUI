@@ -14,7 +14,7 @@ gradle.beforeProject {
     }
 }
 
-stonecutter active "1.20.1"
+stonecutter active "26.2"
 
 stonecutter parameters {
     properties {
@@ -30,7 +30,7 @@ tasks.register("buildAll") {
 
 // Preserve the order of the top-level Minecraft version tables in the
 // Stonecutter properties file. Platform-specific tables such as
-// [neoforge."1.20.2"] intentionally do not match this expression.
+// [neoforge."1.20.1"] intentionally does not match this expression.
 val orderedMinecraftVersions = rootProject.file("stonecutter.properties.toml")
     .readLines()
     .mapNotNull { line ->
@@ -49,8 +49,13 @@ val platformPublishTasks = listOf("publishCurseforge", "publishModrinth")
 gradle.projectsEvaluated {
     val uploadsByMinecraftVersion = orderedMinecraftVersions.map { minecraftVersion ->
         publishPlatforms.flatMap { platform ->
-            platformPublishTasks.map { taskName ->
-                project(":$platform:$minecraftVersion").tasks.named(taskName)
+            val platformProject = rootProject.findProject(":$platform:$minecraftVersion")
+            if (platformProject == null) {
+                emptyList()
+            } else {
+                platformPublishTasks.map { taskName ->
+                    platformProject.tasks.named(taskName)
+                }
             }
         }
     }

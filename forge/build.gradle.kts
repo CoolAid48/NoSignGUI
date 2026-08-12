@@ -18,20 +18,13 @@ val modVersion = property("mod.version").toString()
 val requiredJava = when {
     sc.current.parsed >= "26.1" -> JavaVersion.VERSION_25
     sc.current.parsed >= "1.20.5" -> JavaVersion.VERSION_21
+    sc.current.parsed < "1.17" -> JavaVersion.VERSION_1_8
     else -> JavaVersion.VERSION_17
 }
 val publishMinecraftVersions = when (minecraftVersion) {
-    "1.20.1" -> listOf("1.20", "1.20.1")
-    "1.20.2" -> listOf("1.20.2")
-    "1.20.4" -> listOf("1.20.3", "1.20.4")
-    "1.20.6" -> listOf("1.20.5", "1.20.6")
-    "1.21.1" -> listOf("1.21", "1.21.1")
-    // Forge never released a 1.21.2 loader, so this node starts at 1.21.3.
-    "1.21.3" -> listOf("1.21.3")
-    "1.21.4" -> listOf("1.21.4")
-    "1.21.5" -> listOf("1.21.5")
-    "1.21.8" -> listOf("1.21.6", "1.21.7", "1.21.8")
-    "1.21.10" -> listOf("1.21.9", "1.21.10")
+    "1.16.5" -> listOf("1.16.5")
+    "1.20.1" -> listOf("1.20.1")
+    "1.21.1" -> listOf("1.21.1")
     "1.21.11" -> listOf("1.21.11")
     "26.1" -> listOf("26.1")
     "26.1.1" -> listOf("26.1.1")

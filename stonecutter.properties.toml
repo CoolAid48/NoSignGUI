@@ -1,7 +1,7 @@
 mod.id = "nosigngui"
 mod.name = "NoSignGUI"
 mod.group = "me.coolaid"
-mod.version = "4.0.0"
+mod.version = "4.1.0"
 
 deps.fabric_loader = "0.19.2"
 
@@ -14,31 +14,7 @@ loom.platform = "forge"
 [neoforge."1.20.1"]
 loom.platform = "forge"
 
-[neoforge."1.20.2"]
-loom.platform = "neoforge"
-
-[neoforge."1.20.4"]
-loom.platform = "neoforge"
-
-[neoforge."1.20.6"]
-loom.platform = "neoforge"
-
 [neoforge."1.21.1"]
-loom.platform = "neoforge"
-
-[neoforge."1.21.3"]
-loom.platform = "neoforge"
-
-[neoforge."1.21.4"]
-loom.platform = "neoforge"
-
-[neoforge."1.21.5"]
-loom.platform = "neoforge"
-
-[neoforge."1.21.8"]
-loom.platform = "neoforge"
-
-[neoforge."1.21.10"]
 loom.platform = "neoforge"
 
 [neoforge."1.21.11"]
@@ -56,115 +32,36 @@ loom.platform = "neoforge"
 [neoforge."26.2"]
 loom.platform = "neoforge"
 
+["1.16.5"]
+mod.mc_compat_fabric = "1.16.5"
+mod.mc_compat_forgelike = "[1.16.5,1.16.6)"
+mod.pack_format = "6"
+deps.fabric_loader = "0.16.14"
+deps.fabric_api = "0.42.0+1.16"
+deps.forge_version = "36.2.42"
+deps.forge_loader_range = "[36,37)"
+
 ["1.20.1"]
-mod.mc_compat_fabric = ">=1.20 <=1.20.1"
-mod.mc_compat_forgelike = "[1.20,1.20.2)"
+mod.mc_compat_fabric = "1.20.1"
+mod.mc_compat_forgelike = "[1.20.1,1.20.2)"
 mod.mc_compat_neoforge = "[1.20.1,1.20.2)"
 mod.pack_format = "15"
 deps.fabric_api = "0.92.9+1.20.1"
 deps.forge_version = "47.4.21"
-deps.forge_loader_range = "[46,48)"
+deps.forge_loader_range = "[47,48)"
 deps.neoforge_version = "1.20.1-47.1.106"
 deps.neoforge_loader_range = "[47,48)"
 
-["1.20.2"]
-mod.mc_compat_fabric = "1.20.2"
-mod.mc_compat_forgelike = "[1.20.2,1.20.3)"
-mod.mc_compat_neoforge = "[1.20.2,1.20.3)"
-mod.pack_format = "18"
-deps.fabric_api = "0.91.6+1.20.2"
-deps.forge_version = "48.0.0"
-deps.forge_loader_range = "[48,49)"
-deps.neoforge_version = "20.2.93"
-deps.neoforge_loader_range = "[20.2,20.3)"
-
-["1.20.4"]
-mod.mc_compat_fabric = ">=1.20.3 <=1.20.4"
-mod.mc_compat_forgelike = "[1.20.3,1.20.5)"
-mod.mc_compat_neoforge = "[1.20.3,1.20.5)"
-mod.pack_format = "22"
-deps.fabric_api = "0.97.3+1.20.4"
-deps.forge_version = "49.2.8"
-deps.forge_loader_range = "[49,50)"
-deps.neoforge_version = "20.4.251"
-deps.neoforge_loader_range = "[20.3,20.5)"
-
-["1.20.6"]
-mod.mc_compat_fabric = ">=1.20.5 <=1.20.6"
-mod.mc_compat_forgelike = "[1.20.5,1.21)"
-mod.mc_compat_neoforge = "[1.20.5,1.21)"
-mod.pack_format = "32"
-deps.fabric_api = "0.100.8+1.20.6"
-deps.forge_version = "50.2.9"
-deps.forge_loader_range = "[50,51)"
-deps.neoforge_version = "20.6.139"
-deps.neoforge_loader_range = "[20.5,20.7)"
-
 ["1.21.1"]
-mod.mc_compat_fabric = ">=1.21 <=1.21.1"
-mod.mc_compat_forgelike = "[1.21,1.21.2)"
-mod.mc_compat_neoforge = "[1.21,1.21.2)"
+mod.mc_compat_fabric = "1.21.1"
+mod.mc_compat_forgelike = "[1.21.1,1.21.2)"
+mod.mc_compat_neoforge = "[1.21.1,1.21.2)"
 mod.pack_format = "34"
 deps.fabric_api = "0.116.13+1.21.1"
 deps.forge_version = "52.0.57"
-deps.forge_loader_range = "[51,53)"
+deps.forge_loader_range = "[52,53)"
 deps.neoforge_version = "21.1.235"
-deps.neoforge_loader_range = "[21.0,21.2)"
-
-["1.21.3"]
-mod.mc_compat_fabric = ">=1.21.2 <=1.21.3"
-mod.mc_compat_forgelike = "[1.21.3,1.21.4)"
-mod.mc_compat_neoforge = "[1.21.2,1.21.4)"
-mod.pack_format = "42"
-deps.fabric_api = "0.114.1+1.21.3"
-deps.forge_version = "53.0.55"
-deps.forge_loader_range = "[53,54)"
-deps.neoforge_version = "21.3.96"
-deps.neoforge_loader_range = "[21.2,21.4)"
-
-["1.21.4"]
-mod.mc_compat_fabric = "1.21.4"
-mod.mc_compat_forgelike = "[1.21.4,1.21.5)"
-mod.mc_compat_neoforge = "[1.21.4,1.21.5)"
-mod.pack_format = "46"
-deps.fabric_api = "0.119.4+1.21.4"
-deps.forge_version = "54.0.38"
-deps.forge_loader_range = "[54,55)"
-deps.neoforge_version = "21.4.157"
-deps.neoforge_loader_range = "[21.4,21.5)"
-
-["1.21.5"]
-mod.mc_compat_fabric = "1.21.5"
-mod.mc_compat_forgelike = "[1.21.5,1.21.6)"
-mod.mc_compat_neoforge = "[1.21.5,1.21.6)"
-mod.pack_format = "55"
-deps.fabric_api = "0.128.2+1.21.5"
-deps.forge_version = "55.0.25"
-deps.forge_loader_range = "[55,56)"
-deps.neoforge_version = "21.5.97"
-deps.neoforge_loader_range = "[21.5,21.6)"
-
-["1.21.8"]
-mod.mc_compat_fabric = ">=1.21.6 <=1.21.8"
-mod.mc_compat_forgelike = "[1.21.6,1.21.9)"
-mod.mc_compat_neoforge = "[1.21.6,1.21.9)"
-mod.pack_format = "64"
-deps.fabric_api = "0.136.1+1.21.8"
-deps.forge_version = "58.0.10"
-deps.forge_loader_range = "[56,59)"
-deps.neoforge_version = "21.8.53"
-deps.neoforge_loader_range = "[21.6,21.9)"
-
-["1.21.10"]
-mod.mc_compat_fabric = ">=1.21.9 <=1.21.10"
-mod.mc_compat_forgelike = "[1.21.9,1.21.11)"
-mod.mc_compat_neoforge = "[1.21.9,1.21.11)"
-mod.pack_format = "69"
-deps.fabric_api = "0.138.4+1.21.10"
-deps.forge_version = "60.0.21"
-deps.forge_loader_range = "[59,61)"
-deps.neoforge_version = "21.10.64"
-deps.neoforge_loader_range = "[21.9,21.11)"
+deps.neoforge_loader_range = "[21.1,21.2)"
 
 ["1.21.11"]
 mod.mc_compat_fabric = "1.21.11"

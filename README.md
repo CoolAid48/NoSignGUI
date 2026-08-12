@@ -1,12 +1,12 @@
 # CoolAid's NoSignGUI
 ![](https://img.shields.io/badge/Loaders-Fabric%2fForge%2fNeoForge-red?style=for-the-badge)
-![](https://img.shields.io/badge/Versions-1.20_|_1.21_|_26.1_|_26.2-red?style=for-the-badge)
+![](https://img.shields.io/badge/Versions-1.16.5_|_1.20.1_|_1.21.1_|_26.1_|_26.2-red?style=for-the-badge)
 ![](https://img.shields.io/badge/Environments-Client-red?style=for-the-badge)
 
 ### Allows you to toggle the sign text interface off and on!
 
 - **This is especially useful when using a lot of blank signs for building or trapping**
-- **Toggle the mod on and off with `G` by default**
+- **Toggle the mod on and off with `G` by default, with the state saved via config**
 - **Inspired by [Masonion's NoSignGUI](https://modrinth.com/mod/nosigngui) mod**
 - **Works with hanging signs and functions fully client-side**
 

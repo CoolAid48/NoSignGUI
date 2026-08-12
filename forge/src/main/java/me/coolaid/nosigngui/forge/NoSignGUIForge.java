@@ -5,33 +5,39 @@ import me.coolaid.nosigngui.NoSignGUI;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 //? if >=1.21.11 {
-/*import net.minecraft.resources.Identifier;
-*///?} else if >=1.21.9 {
+import net.minecraft.resources.Identifier;
+//?} else if >=1.21.9 {
 /*import net.minecraft.resources.ResourceLocation;
 *///?}
 import net.minecraftforge.api.distmarker.Dist;
+//? if <1.17 {
+/*import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+*///?} else {
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+//?}
 import net.minecraftforge.event.TickEvent;
 //? if >=1.21.6 {
-/*import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
-*///?} else {
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-//?}
+import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
+//?} else {
+/*import net.minecraftforge.eventbus.api.SubscribeEvent;
+*///?}
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.lwjgl.glfw.GLFW;
 
 @Mod(NoSignGUI.MOD_ID)
 public final class NoSignGUIForge {
     public NoSignGUIForge() {
-        NoSignGUI.init();
+        NoSignGUI.init(FMLPaths.CONFIGDIR.get());
     }
 
     @Mod.EventBusSubscriber(modid = NoSignGUI.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static final class ClientModEvents {
         //? if >=1.21.11 {
-        /*private static final KeyMapping.Category CATEGORY =
+        private static final KeyMapping.Category CATEGORY =
                 KeyMapping.Category.register(Identifier.parse("nosigngui"));
-        *///?} else if >=1.21.9 {
+        //?} else if >=1.21.9 {
         /*private static final KeyMapping.Category CATEGORY =
                 KeyMapping.Category.register(ResourceLocation.parse("nosigngui"));
         *///?}
@@ -41,15 +47,20 @@ public final class NoSignGUIForge {
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_G,
                 //? if >=1.21.9 {
-                /*CATEGORY
-                *///?} else {
-                "key.categories.nosigngui"
-                //?}
+                CATEGORY
+                //?} else {
+                /*"key.categories.nosigngui"
+                *///?}
         );
 
         @SubscribeEvent
+        //? if <1.17 {
+        /*public static void onClientSetup(FMLClientSetupEvent event) {
+            ClientRegistry.registerKeyBinding(TOGGLE_GUI_KEY);
+        *///?} else {
         public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
             event.register(TOGGLE_GUI_KEY);
+        //?}
         }
     }
 
@@ -57,22 +68,22 @@ public final class NoSignGUIForge {
     public static final class ClientForgeEvents {
         @SubscribeEvent
         //? if >=1.20.3 {
-        /*public static void onClientTick(TickEvent.ClientTickEvent.Post event) {
-        *///?} else {
-        public static void onClientTick(TickEvent.ClientTickEvent event) {
+        public static void onClientTick(TickEvent.ClientTickEvent.Post event) {
+        //?} else {
+        /*public static void onClientTick(TickEvent.ClientTickEvent event) {
             if (event.phase != TickEvent.Phase.END) {
                 return;
             }
-            //?}
+            *///?}
 
             Minecraft minecraft = Minecraft.getInstance();
             while (ClientModEvents.TOGGLE_GUI_KEY.consumeClick()) {
                 if (minecraft.player != null) {
                     //? if >=26.1 {
-                    /*minecraft.player.sendOverlayMessage(NoSignGUI.toggleSignGuiMessage());
-                    *///?} else {
-                    minecraft.player.displayClientMessage(NoSignGUI.toggleSignGuiMessage(), true);
-                    //?}
+                    minecraft.player.sendOverlayMessage(NoSignGUI.toggleSignGuiMessage());
+                    //?} else {
+                    /*minecraft.player.displayClientMessage(NoSignGUI.toggleSignGuiMessage(), true);
+                    *///?}
                 }
             }
         }

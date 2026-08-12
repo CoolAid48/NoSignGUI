@@ -13,6 +13,7 @@ val modVersion = property("mod.version").toString()
 val requiredJava = when {
     sc.current.parsed >= "26.1" -> JavaVersion.VERSION_25
     sc.current.parsed >= "1.20.5" -> JavaVersion.VERSION_21
+    sc.current.parsed < "1.17" -> JavaVersion.VERSION_1_8
     else -> JavaVersion.VERSION_17
 }
 
@@ -22,7 +23,7 @@ base.archivesName.set("$modId-common")
 val commonPlatforms = buildList {
     if (sc.node.sibling("fabric") != null) add("fabric")
     if (sc.node.sibling("forge") != null) add("forge")
-    if (sc.node.sibling("neoforge") != null) {
+    if (sc.current.version != "1.16.5" && sc.node.sibling("neoforge") != null) {
         add(if (sc.current.parsed >= "1.20.2") "neoforge" else "forge")
     }
 }.distinct()
